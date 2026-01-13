@@ -1,0 +1,38 @@
+# Ignore all this
+bin/*
+hl2/*
+platform/*
+steamapps/*
+
+tf/addons/*.vdf
+
+tf/addons/metamod/*
+tf/addons/sourcemod/bin/*
+tf/addons/sourcemod/configs/*
+tf/addons/sourcemod/data/*
+tf/addons/sourcemod/extensions/*
+tf/addons/sourcemod/gamedata/*
+tf/addons/sourcemod/logs/*
+tf/addons/sourcemod/plugins/*
+tf/addons/sourcemod/plugins1/*
+
+tf/addons/sourcemod/*.txt
+
+# Plugin
+tf/addons/sourcemod/scripting/include/*.inc
+tf/addons/sourcemod/scripting/admin-flatfile/*
+tf/addons/sourcemod/scripting/adminmenu/*
+
+tf/addons/sourcemod/scripting/admin-flatfile.sp
+tf/addons/sourcemod/scripting/adminmenu.sp
+
+tf/addons/sourcemod/scripting/*.exe
+tf/addons/sourcemod/scripting/compile.dat
+
+srcds.exe
+srcds_win64.exe
+
+steam_appid.txt
+
+
+# Now ignore plugin code that aint mine
