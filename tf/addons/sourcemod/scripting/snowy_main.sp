@@ -8,6 +8,7 @@ ConVar g_cvarwhitelistenabled;
 
 #include <snowy/main>
 #include <snowy/whitelist>
+#include <snowy/logs>
 
 #include "snowy/whitelist.sp" // You first.
 #include "snowy/explosive_arrows.sp"

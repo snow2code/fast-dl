@@ -1,3 +1,5 @@
+#Other
+_local/
 
 # Ignore Source Engine and Server Junk
 bin/*
@@ -22,6 +24,9 @@ tf/scripts/*
 tf/workshop/*
 tf/logs/*
 
+tf/maps/*.bsp
+tf/maps/a/
+tf/maps/b/
 tf/maps/graphs/*.ain
 tf/maps/*.lst
 tf/maps1/*
@@ -44,7 +49,18 @@ tf/cfg/chapter3.cfg
 tf/cfg/mtp.cfg
 tf/cfg/replay_example.cfg
 tf/cfg/undo360controller.cfg
-tf/cfg/*.txt
+
+# tf/cfg/
+tf/cfg/motd_default.txt
+tf/cfg/motd_text_default.txt
+tf/cfg/pure_server_full.txt
+tf/cfg/pure_server_minimal.txt
+tf/cfg/pure_server_whitelist_example.txt
+tf/cfg/sfm_defaultanimationgroups.txt
+tf/cfg/trusted_keys_base.txt
+tf/cfg/trusted_keys_example.txt
+tf/cfg/vscript_convar_allowlist.txt
+# tf/cfg/*.txt
 
 
 
@@ -66,6 +82,7 @@ tf/addons/sourcemod/plugins/adminhelp.smx
 tf/addons/sourcemod/plugins1/*
 
 tf/addons/sourcemod/translations/*
+tf/addons/sourcemod/translations1/*
 
 tf/addons/sourcemod/*.txt
 tf/addons/*.vdf

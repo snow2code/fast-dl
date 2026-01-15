@@ -144,6 +144,10 @@ public OGF_InfAmmo()
 					} else if ( StrEqual(weaponClass, "tf_weapon_shotgun_pyro", false) ) {
 						found = true;
 						maxReserve = 32;
+					} else if ( StrEqual(weaponClass, "tf_weapon_flaregun", false) ) {
+						found = true;
+						maxReserve = 16;
+
 
 					// Demoman
 					} else if ( StrEqual(weaponClass, "tf_weapon_grenadelauncher", false) ) {

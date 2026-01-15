@@ -47,11 +47,11 @@ public Action Command_Cvar(int client, int args)
 	{
 		if (client == 0)
 		{
-			ReplyToCommand(client, "[SM] Usage: sm_cvar <cvar|protect> [value]");
+			Snowy_ReplyToCommand(client, "Usage: sm_cvar <cvar|protect> [value]");
 		}
 		else
 		{
-			ReplyToCommand(client, "[SM] Usage: sm_cvar <cvar> [value]");
+			Snowy_ReplyToCommand(client, "Usage: sm_cvar <cvar> [value]");
 		}
 		return Plugin_Handled;
 	}
@@ -63,25 +63,25 @@ public Action Command_Cvar(int client, int args)
 	{
 		if (args < 2)
 		{
-			ReplyToCommand(client, "[SM] Usage: sm_cvar <protect> <cvar>");
+			Snowy_ReplyToCommand(client, "Usage: sm_cvar <protect> <cvar>");
 			return Plugin_Handled;
 		}
 		GetCmdArg(2, cvarname, sizeof(cvarname));
 		ProtectVar(cvarname);
-		ReplyToCommand(client, "[SM] %t", "Cvar is now protected", cvarname);
+		Snowy_ReplyToCommand(client, "Cvar %s is now protected", cvarname);
 		return Plugin_Handled;
 	}
 
 	ConVar hndl = FindConVar(cvarname);
 	if (hndl == null)
 	{
-		ReplyToCommand(client, "[SM] %t", "Unable to find cvar", cvarname);
+		Snowy_ReplyToCommand(client, "Unable to find cvar", cvarname);
 		return Plugin_Handled;
 	}
 
 	if (!IsClientAllowedToChangeCvar(client, cvarname))
 	{
-		ReplyToCommand(client, "[SM] %t", "No access to cvar");
+		Snowy_ReplyToCommand(client, "No access to cvar");
 		return Plugin_Handled;
 	}
 
@@ -90,7 +90,7 @@ public Action Command_Cvar(int client, int args)
 	{
 		hndl.GetString(value, sizeof(value));
 
-		ReplyToCommand(client, "[SM] %t", "Value of cvar", cvarname, value);
+		Snowy_ReplyToCommand(client, "The value of %s is %s", cvarname, value);
 		return Plugin_Handled;
 	}
 
@@ -108,11 +108,11 @@ public Action Command_Cvar(int client, int args)
 
 	if ((hndl.Flags & FCVAR_PROTECTED) != FCVAR_PROTECTED)
 	{
-		ShowActivity2(client, "[SM] ", "%t", "Cvar changed", cvarname, value);
+		Snowy_ReplyToCommand(client, "SHOWACTIVITY2\nCvar %s changed to %s", cvarname, value);
 	}
 	else
 	{
-		ReplyToCommand(client, "[SM] %t", "Cvar changed", cvarname, value);
+		Snowy_ReplyToCommand(client, "Cvar %s changed to %s", cvarname, value);
 	}
 
 	LogAction(client, -1, "\"%L\" changed cvar (cvar \"%s\") (value \"%s\")", client, cvarname, value);
@@ -126,7 +126,7 @@ public Action Command_ResetCvar(int client, int args)
 {
 	if (args < 1)
 	{
-		ReplyToCommand(client, "[SM] Usage: sm_resetcvar <cvar>");
+		Snowy_ReplyToCommand(client, "Usage: sm_resetcvar <cvar>");
 
 		return Plugin_Handled;
 	}
@@ -137,13 +137,13 @@ public Action Command_ResetCvar(int client, int args)
 	ConVar hndl = FindConVar(cvarname);
 	if (hndl == null)
 	{
-		ReplyToCommand(client, "[SM] %t", "Unable to find cvar", cvarname);
+		Snowy_ReplyToCommand(client, "Unable to find cvar '%s'", cvarname);
 		return Plugin_Handled;
 	}
 	
 	if (!IsClientAllowedToChangeCvar(client, cvarname))
 	{
-		ReplyToCommand(client, "[SM] %t", "No access to cvar");
+		Snowy_ReplyToCommand(client, "You don't have access to that cvar");
 		return Plugin_Handled;
 	}
 
@@ -154,11 +154,11 @@ public Action Command_ResetCvar(int client, int args)
 
 	if ((hndl.Flags & FCVAR_PROTECTED) != FCVAR_PROTECTED)
 	{
-		ShowActivity2(client, "[SM] ", "%t", "Cvar changed", cvarname, value);
+		Snowy_ReplyToCommand(client, "SHOWACTIVITY2\nCvar %s changed to %s", cvarname, value);
 	}
 	else
 	{
-		ReplyToCommand(client, "[SM] %t", "Cvar changed", cvarname, value);
+		Snowy_ReplyToCommand(client, "Cvar %s changed to %s", cvarname, value);
 	}
 
 	LogAction(client, -1, "\"%L\" reset cvar (cvar \"%s\") (value \"%s\")", client, cvarname, value);

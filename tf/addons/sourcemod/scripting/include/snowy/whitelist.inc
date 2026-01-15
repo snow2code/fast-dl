@@ -1,4 +1,4 @@
-#if defined _snowy_whitelist_included// _snowy_whitelist_included
+#if defined _snowy_whitelist_included // _snowy_whitelist_included
   #endinput
 #endif
 #define _snowy_whitelist_included

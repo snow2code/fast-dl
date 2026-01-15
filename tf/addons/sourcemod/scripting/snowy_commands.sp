@@ -22,9 +22,12 @@ StringMap g_ProtectedVars;
 
 
 #include "snowy_cmds/tp_fp.sp" 			// Generic
+#include "snowy_cmds/sounds.sp" 			// Generic
 
 // Admin
 // #include "snowy_cmds/admin/.sp"   	// Admin
+#include "snowy_cmds/admin/map.sp"   	// Admin
+#include "snowy_cmds/admin/heal.sp"   	// Admin
 #include "snowy_cmds/admin/noclip.sp"   	// Admin
 #include "snowy_cmds/admin/plugins.sp"    	// Admin
 #include "snowy_cmds/admin/password.sp"   	// Admin
@@ -44,9 +47,9 @@ public Plugin myinfo =
 
 public void OnPluginStart()
 {
-	LoadTranslations("common.phrases");
-	LoadTranslations("plugin.basecommands");
-	// LoadTranslations("snowy.phrases");
+	// LoadTranslations("common.phrases");
+	// LoadTranslations("plugin.basecommands");
+	LoadTranslations("snowy.phrases");
 
 	// Convars
 	g_displayNoclipUsed = CreateConVar("sm_display_noclip_used", "1.0", "Toggle the '[Snowy] Admin toggled noclip on player' message", 0, true, 0.0, true, 1.0);
@@ -62,8 +65,11 @@ public void OnPluginStart()
     // Commands
 	RegConsoleCmd("tp", Command_ThirdPerson);
 	RegConsoleCmd("fp", Command_FirstPerson);
+	RegConsoleCmd("sm_sounds", Menu_Sounds);
 
-	RegAdminCmd("sm_noclip", Command_Noclip, ADMFLAG_CHEATS);
+	RegAdminCmd("sm_map", Command_Map, ADMFLAG_CHEATS);
+	RegAdminCmd("sm_noclip", Command_Noclip, ADMFLAG_CHANGEMAP);
+	RegAdminCmd("sm_heal", Command_Heal, ADMFLAG_CONFIG, "");
 	RegAdminCmd("sm_rcon", Command_Rcon, ADMFLAG_RCON, "sm_rcon <args>");
 	RegAdminCmd("sm_cvar", Command_Cvar, ADMFLAG_CONVARS, "sm_cvar <cvar> [value]");
 	RegAdminCmd("sm_resetcvar", Command_ResetCvar, ADMFLAG_CONVARS, "sm_resetcvar <cvar>");
@@ -88,6 +94,20 @@ public void OnPluginStart()
 	ProtectVar("rcon_password");
 	ProtectVar("sm_show_activity");
 	ProtectVar("sm_immunity_mode");
+}
+
+public APLRes:AskPluginLoad2(Handle:myself, bool:late, String:error[], err_max)
+{
+	new String:Game[32];
+	GetGameFolderName(Game, sizeof(Game));
+	
+    if ( !StrEqual(Game, "tf") )
+	{
+		Format(error, err_max, "This plugin only works for Team Fortress 2");
+		return APLRes_Failure;
+	}
+	
+    return APLRes_Success;
 }
 
 public void OnAdminMenuReady(Handle aTopMenu)
